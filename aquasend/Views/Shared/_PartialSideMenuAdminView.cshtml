@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Http
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<div id="sidebar" class="app-sidebar">
+    <!-- BEGIN scrollbar -->
+    <div class="app-sidebar-content" data-scrollbar="true" data-height="100%">
+
+        <!-- BEGIN menu -->
+        <div class="menu">
+            <div class="menu-header">
+                <a asp-controller="Home" asp-action="Index" class="brand-logo">
+                    <h2>AquaSend</h2>
+                </a>
+                @*<a class="navbar-brand mr-5 p-0 col-md-2" asp-area="" asp-controller="Home" asp-action="Index"><img alt="Logo" src="~/assets/img/eosLogo.png" width="80%" /></a>*@
+            </div>
+            <div class="menu-header">Navigation</div>
+            <div class="menu-item @(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "active" : "")">
+                <a asp-controller="Admins" asp-action="Dashboard" class="menu-link">
+                    <span class="menu-icon"><i class="fa fa-home"></i></span>
+                    <span class="menu-text">Dashboard</span>
+                </a>
+            </div>
+            <div class="menu-item @(ViewContext.RouteData.Values["Action"].ToString() == "Users" ? "active" : "")">
+                <a asp-controller="Admins" asp-action="Users" class="menu-link">
+                    <span class="menu-icon"><i class="fa fa-user"></i></span>
+                    <span class="menu-text">Users</span>
+                </a>
+            </div>
+            <div class="menu-item @(ViewContext.RouteData.Values["Action"].ToString() == "Drivers" ? "active" : "")">
+                <a asp-controller="Admins" asp-action="Drivers" class="menu-link">
+                    <span class="menu-icon"><i class="fa fa-user"></i></span>
+                    <span class="menu-text">Drivers</span>
+                </a>
+            </div>
+            <div class="menu-item @(ViewContext.RouteData.Values["Action"].ToString() == "Requests" ? "active" : "")">
+                <a asp-controller="Admins" asp-action="Requests" class="menu-link">
+                    <span class="menu-icon"><i class="fa fa-handshake"></i></span>
+                    <span class="menu-text">Requests</span>
+                </a>
+            </div>
+
+          
+
+            <div class="menu-item has-sub">
+
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+        <!-- END menu -->
+    </div>
+    <!-- END scrollbar -->
+    <!-- BEGIN mobile-sidebar-backdrop -->
+    <button class="app-sidebar-mobile-backdrop" data-dismiss="sidebar-mobile"></button>
+    <!-- END mobile-sidebar-backdrop -->
+</div>

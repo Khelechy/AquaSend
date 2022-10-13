@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+
+}
+@model IEnumerable<aquasend.Models.User>;
+
+<link rel="stylesheet" href="~/css/user.css" />
+
+<div class="container">
+    <h2 class="text-center heading mb-5">Users</h2>
+    <form asp-route-globalSearch="globalSearch" asp-action="Users" method="get">
+        <div class="row mb-3">
+            <div class="col-md-4 mb-2">
+                <label class="text-muted m-0 p-0">Search</label>
+                <input type="text" name="searchString" id="startDate" class="form-control" placeholder="Enter a name" />
+            </div>
+            <div class="pt-3">
+                <button onclick="filterRequests" class="btn btn-primary mt-2"><i class="fa fa-search"></i> Search</button>
+            </div>
+        </div>
+    </form>
+
+
+    <!-- BEGIN card -->
+    <div class="card">
+        <!-- BEGIN card-body -->
+        <div class="card-body">
+
+            <div class="table-responsive table-striped table-hover table-sm table-bordered p-0 m-0">
+                <table id="meetingTable" cellspacing="0" cellpadding="5" width="100%">
+                    <thead class="">
+                        <tr>
+                            <th class="col-md-3">First Name</th>
+                            <th class="col-md-3">Last Name</th>
+                            <th class="col-md-3">Email</th>
+                            <th class="col-md-3">Phone Number</th>
+                            <th class="col-md-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model != null)
+                            {
+                                if (Model.Count() > 0)
+                                {
+                                    foreach (var user in Model)
+                                    {
+                                                <tr>
+                                                    <td class="col-md-3">@user.FirstName</td>
+                                                    <td class="col-md-3">@user.LastName</td>
+                                                    <td class="col-md-3">@user.Email</td>
+                                                    <td class="col-md-3">@user.PhoneNumber</td>
+                                                    <td class="col-md-3">
+                                                        <form method="get">
+                                                            <button asp-action="DeleteUser" asp-route-id="@user.Id" type="submit" class="btn btn-primary mt-2 m-auto">Edit</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <p align="center"><b>No User Found</b></p>
+                                }
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-3">
+                @Html.Raw(ViewBag.Status)
+            </div>
+        </div>
+        <!-- END card-body -->
+    </div>
+    <!-- END card -->
+</div>
+
+
+@*<div id="modal" class="modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body m-3">
+                <h3 class="text-center mb-3">Add Admin</h3>
+                <form method="post" asp-action="AddAdmin" asp-controller="Admins">
+                    <div class="row">
+                        <input class="form-control m-2 col-md-5" name="Firstname" type="text" placeholder="Firstname" required />
+                        <input class="form-control m-2 col-md-5" name="Lastname" type="text" placeholder="Lastname" required />
+                        <input class="form-control m-2 col-md-5" name="Email" type="email" placeholder="Email Address" required />
+                        <input class="form-control m-2 col-md-5" name="PhoneNumber" type="tel" placeholder="Phone Number" required />
+
+                        <input class="form-control m-2 col-md-5 mt-3" name="Country" type="text" placeholder="Country" required />
+                        <div class="text-left m-2">
+                            <b>Gender: </b><br />
+                            @foreach (var gender in System.Enum.GetValues(typeof(Investment.Enums.GenderEnum)))
+                            {
+                                <label class="m-1" name="Gender">@gender</label>
+                                <input class="m-1" type="radio" name="Gender" value="@((int)gender)" />
+                            }
+                        </div>
+
+
+                        <br /><br />
+
+                        <input class="form-control m-2 col-md-10" name="WalletAddress" type="text" placeholder="Wallet Address" required />
+                        <input class="form-control m-2 col-md-5" name="Password" type="password" placeholder="Password" required />
+                        <input class="form-control m-2 col-md-5" name="ConfirmPassword" type="password" placeholder="Confirm Password" required />
+                    </div>
+                    <button class="btn-lg m-2 mt-3" type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+

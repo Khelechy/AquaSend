@@ -1,0 +1,68 @@
+﻿:root {
+    --secondaryColor: #384BFF;
+    --primaryColor: #ffffff;
+    --accentColor: #EBF5FF;
+    --accentAshColor: #C4C4C4;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.jumboText{
+    color: var(--secondaryColor);
+    font-weight: 900;
+}
+
+.jumbo {
+    background-image: url('../assets/img/jumboBG.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.chart {
+    background-image: url('../assets/img/graph.svg');
+    background-color: var(--accentColor);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-bottom: 40%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.about {
+    background-image: url('../assets/img/jumboBG.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-left: 15%;
+    padding-right: 1%;
+}
+
+.heading {
+    color: var(--secondaryColor);
+}
+
+.follow{
+    font-weight: 300;
+}
+
+.newButton{
+    background-color: var(--secondaryColor);
+    color: var(--primaryColor);
+}
+
+.Text {
+    font-weight: 900;
+}
+
+.how {
+    background-color: var(--secondaryColor);
+    color: var(--primaryColor);
+}
+
+.tag {
+    background-color: var(--primaryColor);
+    color: var(--secondaryColor);
+}

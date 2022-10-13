@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AquaSend | @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    @*<link href="~/assets/img/TD-Logo.png" rel="shortcut icon" type="image/x-icon" />*@
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link href="~/assets/css/app.min.css" rel="stylesheet" />
+</head>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<body>
+    <!-- BEGIN #app -->
+    <div id="app" class="app">
+        <!-- BEGIN #header -->
+        @*@Html.Partial("_PartialTopMenuView")*@
+        <partial name="_PartialTopMenuView.cshtml">
+            <!-- END #header -->
+            <!-- BEGIN #sidebar -->
+            @*@Html.Partial("_PartialSideMenuView")*@
+
+            @if (User.IsInRole("Admin"))
+            {
+                <partial name="_PartialSideMenuAdminView.cshtml">
+                    <!-- END #sidebar -->
+                    <!-- BEGIN #content -->
+                    <div id="content" class="app-content">
+                        @RenderBody()
+                    </div>
+                    <!-- END #content -->
+                    <!-- BEGIN btn-scroll-top -->
+                    <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+                </partial>
+            }
+            else if (User.IsInRole("User"))
+            {
+                <partial name="_PartialSideMenuView.cshtml">
+                    <!-- END #sidebar -->
+                    <!-- BEGIN #content -->
+                    <div id="content" class="app-content">
+                        @RenderBody()
+                    </div>
+                    <!-- END #content -->
+                    <!-- BEGIN btn-scroll-top -->
+                    <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
+                </partial>
+                <!-- END btn-scroll-top -->
+            }
+        </partial>
+
+    </div>
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/616c70d2f7c0440a591eab4e/1fi7pheau';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--Start of Tawk.to Script-->
+    <!--End of Tawk.to Script-->
+    <!-- END #app -->
+    <!-- ================== BEGIN core-js ================== -->
+    <script src="~/assets/js/app.min.js"></script>
+    <!-- ================== END core-js ================== -->
+    <!-- ================== BEGIN page-js ================== -->
+    <!-- DataTable js -->
+    <script src="~/assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/assets/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+    <script src="~/assets/plugins/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="~/assets/plugins/sweetalert2.all.min.js"></script>
+    <script src="~/assets/plugins/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+    <!--Custom JS -->
+    <script src="~/assets/js/modal.js"></script>
+
+    @RenderSection("pageScripts", required: false)
+    <!-- ================== END page-js ================== -->
+</body>
+</html>

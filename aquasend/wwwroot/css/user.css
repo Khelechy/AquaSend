@@ -1,0 +1,44 @@
+﻿:root {
+    --secondaryColor: #384BFF;
+    --primaryColor: #ffffff;
+    --accentColor: #EBF5FF;
+    --accentAshColor: #C4C4C4;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.card {
+    background-color: #ebeef4;
+}
+
+.colorize {
+    color: var(--secondaryColor);
+}
+
+.cards{
+    background-color: var(--secondaryColor);
+    color: var(--primaryColor);
+}
+
+.inactive{
+    color: var(--accentColor);
+}
+
+button {
+    background-color: var(--primaryColor);
+    border: 1px solid;
+    border-color: var(--secondaryColor);
+    color: var(--secondaryColor);
+    font-weight: 400;
+    width: 100%;
+}
+
+button:hover {
+    background-color: var(--secondaryColor);
+    border: none;
+    color: var(--primaryColor);
+    font-weight: 600;
+    width: 100%;
+}
