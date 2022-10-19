@@ -12,5 +12,7 @@ namespace aquasend.Models
         public string LastName { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsDriver { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

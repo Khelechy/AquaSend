@@ -49,11 +49,11 @@ namespace aquasend.Services
         {
             if (string.IsNullOrEmpty(searchString))
             {
-                return await _context.Users.Where(x => x.IsAdmin == false && x.IsDriver == false).ToListAsync();
+                return await _context.Users.Where(x => x.IsAdmin == false && x.IsDriver == false && x.IsDeleted == false).ToListAsync();
             }
             else
             {
-                return await _context.Users.Where(x => x.IsAdmin == false && x.IsDriver == false &&
+                return await _context.Users.Where(x => x.IsAdmin == false && x.IsDriver == false && x.IsDeleted == false &&
                 ((x.FirstName.ToLower() == searchString.ToLower())
                 || (x.LastName.ToLower() == searchString.ToLower())))
                     .ToListAsync();
@@ -209,7 +209,7 @@ namespace aquasend.Services
 
         public async Task<Statistics> LoadStatistics()
         {
-            var totalUsers = await _context.Users.Where(u => u.IsAdmin == false && u.IsDriver == false).CountAsync();
+            var totalUsers = await _context.Users.Where(u => u.IsAdmin == false && u.IsDriver == false && u.IsDeleted == false).CountAsync();
             var totalDrivers = await _context.Users.Where(u => u.IsDriver == true).CountAsync();
             var totalRequests = await _context.Requests.CountAsync();
             var pendingRequests = await _context.Requests.Where(u => u.RequestStatus == Enums.RequestEnum.pending).CountAsync();
@@ -252,7 +252,8 @@ namespace aquasend.Services
         public async Task DeleteUser(string id)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
-            _context.Remove(user);
+            user.IsDeleted = true;  
+            _context.Update(user);
             await _context.SaveChangesAsync();
         }
     }

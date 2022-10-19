@@ -118,6 +118,13 @@ namespace aquasend.Controllers
         public async Task<IActionResult> DeleteUser(string id)
         {
             await _userService.DeleteUser(id);
+            return RedirectToAction("Users", "Admins");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteDriver(string id)
+        {
+            await _userService.DeleteUser(id);
             return RedirectToAction("Drivers", "Admins");
         }
 
