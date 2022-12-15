@@ -10,8 +10,8 @@ using aquasend.Data;
 namespace aquasend.Migrations
 {
     [DbContext(typeof(AquaContext))]
-    [Migration("20220109174625_intiailMigiiww")]
-    partial class intiailMigiiww
+    [Migration("20221215085130_initialMig")]
+    partial class initialMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -207,6 +207,9 @@ namespace aquasend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDriver")

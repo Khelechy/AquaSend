@@ -207,6 +207,9 @@ namespace aquasend.Migrations
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDriver")
                         .HasColumnType("bit");
 
