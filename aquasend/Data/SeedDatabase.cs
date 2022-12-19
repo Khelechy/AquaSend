@@ -23,7 +23,7 @@ namespace aquasend.Data
         public async Task SeedAdmin(AquaContext _db)
         {
             var user = new User();
-            user.Email = "admin@aquasend.com";
+            user.Email = "chikejoe50@gmail.com";
             user.FirstName = "Admin";
             user.LastName = "Admin";
             user.PhoneNumber = "09000000000";

@@ -4,6 +4,7 @@ using aquasend.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,8 +40,14 @@ namespace aquasend.Services
             var isAcceptedt = await SaveChanges();
             if (isAcceptedt)
             {
-                await _mailService.SendMailAsync(driver, driver.Email, "One new delivery", $"You have a water delivery to make to {user.FirstName} with phone number {user.PhoneNumber} at address {request.Address} .");
-                await _mailService.SendMailAsync(user, user.Email, "Request Accepted", $"Your water delivery request has been accepted and the tank driver with name {driver.FirstName} and phone number {driver.PhoneNumber} is coming to your address.");
+                try
+                {
+                    await _mailService.SendMailAsync(driver, driver.Email, "One new delivery", $"You have a water delivery to make to {user.FirstName} with phone number {user.PhoneNumber} at address {request.Address} .");
+                    await _mailService.SendMailAsync(user, user.Email, "Request Accepted", $"Your water delivery request has been accepted and the tank driver with name {driver.FirstName} and phone number {driver.PhoneNumber} is coming to your address.");
+                }catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);    
+                }
             }
             return isAcceptedt;
         }
@@ -54,7 +61,13 @@ namespace aquasend.Services
             var isRejected = await SaveChanges();
             if (isRejected)
             {
-                await _mailService.SendMailAsync(user, user.Email, "Request Rejected", $"Your water delivery request has been rejected.");
+                try
+                {
+                    await _mailService.SendMailAsync(user, user.Email, "Request Rejected", $"Your water delivery request has been rejected.");
+                }catch(Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
             }
             return isRejected;
         }
@@ -84,7 +97,13 @@ namespace aquasend.Services
             var isCreated = await SaveChanges();
             if (isCreated)
             {
-                await _mailService.SendMailAsync(admin, admin.Email, "New Water Delivery Request", $"Anew water delivery request has been logged.");
+                try
+                {
+                    await _mailService.SendMailAsync(admin, "chikejoe50@gmail.com", "New Water Delivery Request", $"Anew water delivery request has been logged.");
+                }catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
             }
             return new Tuple<bool, string>(isCreated, "Request is succesfully logged, you will assigned a driver on approval");
         }

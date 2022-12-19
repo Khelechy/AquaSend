@@ -10,8 +10,8 @@ using aquasend.Data;
 namespace aquasend.Migrations
 {
     [DbContext(typeof(AquaContext))]
-    [Migration("20221215085130_initialMig")]
-    partial class initialMig
+    [Migration("20221215133733_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
